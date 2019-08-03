@@ -2,13 +2,12 @@
 namespace App\controllers;
 
 use App\Models\Article;
-use App\Interfaces\ViewInterface;
 
 class ArticleController
 {
-	public function __construct(ViewInterface $view)
+	public function __construct($services)
 	{
-		 $this->view = $view;
+		 $this->view = $services['View'];
 	}
 
 	public function actionHome()

@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\classes\DB;
+use App\classes\Locator;
 
 class User extends AbstractModel
 {
@@ -15,7 +15,7 @@ class User extends AbstractModel
 		$data[':pass'] = $pass;
 		$sql = 'SELECT * FROM '. static::$table . ' WHERE login = :login AND pass = :pass';
 		$class = get_called_class();
-		$db = new DB;
+		$db = Locator::getService('DB');
 		$res = $db->query($sql, $data);
 		if(!$res){
 			return false;

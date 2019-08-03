@@ -3,18 +3,15 @@ namespace App\controllers;
 
 use App\Models\Article;
 use App\Models\User;
-use App\classes\Validator;
-use App\Interfaces\ViewInterface;
-
-
 
 class AdminController
 {
 
 	protected $view;
 
-	public function __construct(ViewInterface $view){
-		 	$this->view = $view;
+	public function __construct($services){
+		 	$this->view = $services['View'];
+		 	$this->validator = $services['Validator'];
 		}
 
 
@@ -66,9 +63,8 @@ class AdminController
 		$title = $_POST['title'];
 		$text = $_POST['text'];
 			
-		$Validator = new Validator();
 
-		if($Validator->validate($title,$text)){
+		if($this->validator->validate($title,$text)){
 			$article = new Article;
 			$article->title = $title;
 			$article->text = $text;
@@ -100,9 +96,8 @@ class AdminController
 			$title = $_POST['title'];
 			$text = $_POST['text'];
 				
-			$Validator = new Validator();
 
-			if($Validator->validate($title,$text)){
+			if($this->validator->validate($title,$text)){
 
 				$article = new Article;
 				$article->title = $title;

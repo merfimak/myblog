@@ -1,8 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\classes\DB;
-use App\classes\View;
+use App\classes\Locator;
 use App\Interfaces\IModel;
 use Exception;
 
@@ -12,6 +11,7 @@ abstract class AbstractModel
 
 	static protected $table; 
 	protected $data = [];
+	protected $db = [];
 
 	public static function getTable()
 	{
@@ -31,7 +31,7 @@ abstract class AbstractModel
 	static public function getAll()
 	{
 		$class = get_called_class();
-		$db = new DB;
+		$db = Locator::getService('DB');
 		$db->setClassName($class);
 		return $res = $db->query('SELECT * FROM ' . static::$table);
 	}
@@ -39,7 +39,7 @@ abstract class AbstractModel
 	static public function getOne($id)
 	{
 		$class = get_called_class();
-		$db = new DB;
+		$db = Locator::getService('DB');
 		$db->setClassName($class);
 
 		try{
@@ -49,7 +49,7 @@ abstract class AbstractModel
 			}
 		}catch (Exception $e){
 
-			$view = new View();
+			$view = Locator::getService('View');
 			$view->messege = $e->getMessage();
 			$view->display('v_404.php');
 				die(); 
@@ -72,7 +72,7 @@ abstract class AbstractModel
 		 (' . implode(', ', $b) . ')
 		 ';
 
-		 $db = new DB();
+		 $db = Locator::getService('DB');
 		 $db->Execute($sql, $data);
 		 return $this->id = $db->lastInsertId();
 	}
@@ -88,14 +88,14 @@ abstract class AbstractModel
 	 	 SET ' . implode(', ', $a) . '
 	 	 WHERE id = '. $id; 
 
-		$db = new DB();
+		$db = Locator::getService('DB');
 		$db->Execute($sql, $data);
 	}
 
 	public function delete($id)
 	{
 	$sql ='DELETE FROM ' . static::$table . ' WHERE id='.$id;
-	$db = new DB();
+	$db = Locator::getService('DB');
 	$db->Execute($sql);
 	}
 
