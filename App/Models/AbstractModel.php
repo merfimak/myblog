@@ -3,7 +3,7 @@ namespace App\Models;
 
 use App\classes\Locator;
 use App\Interfaces\IModel;
-use Exception;
+use App\Exception\OneArticleException;
 
 abstract class AbstractModel
 	implements IModel
@@ -45,9 +45,9 @@ abstract class AbstractModel
 		try{
 			$res = $db->query('SELECT * FROM ' . static::$table . ' WHERE id = :id',[':id' => $id])[0] ;
 			if (!isset($res)){
-				throw new Exception('такой статьи в базе нет');
+				throw new OneArticleException('такой статьи в базе нет');
 			}
-		}catch (Exception $e){
+		}catch (OneArticleException $e){
 
 			$view = Locator::getService('View');
 			$view->messege = $e->getMessage();

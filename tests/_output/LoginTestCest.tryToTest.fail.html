@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/view/main.css"> 
+	<title>myblog</title>
+</head>
+<body>
+<div class="wrapper">
+
+	<div class="four"><h1>My blog</h1></div>
+
+	<ul class="menu-main">
+			<li><a href="/article/All">Blog</a></li>
+			<li><a href="/admin">Admin</a></li>
+	</ul>
+
+		<h3>Привет админ</h3>	
+
+<a href="/Admin/add"><strong>Написать новую статью</strong></a>
+<hr>
+
+<div class="edit_list">
+	<div class="edit_list_a"><a href="article/One?id=1">Песочные часы</a></div>
+	<a href="Admin/Edit?id=1">редактировать</a>
+	<form action="Admin/Destroy?id=1" method="POST">
+		<input type="submit" value="удалить" >
+	</form>
+</div>
+<div class="edit_list">
+	<div class="edit_list_a"><a href="article/One?id=2">Дефектные шарики</a></div>
+	<a href="Admin/Edit?id=2">редактировать</a>
+	<form action="Admin/Destroy?id=2" method="POST">
+		<input type="submit" value="удалить" >
+	</form>
+</div>
+<div class="edit_list">
+	<div class="edit_list_a"><a href="article/One?id=3">Два кубика и наклейки</a></div>
+	<a href="Admin/Edit?id=3">редактировать</a>
+	<form action="Admin/Destroy?id=3" method="POST">
+		<input type="submit" value="удалить" >
+	</form>
+</div>
+<div class="edit_list">
+	<div class="edit_list_a"><a href="article/One?id=5">sdv</a></div>
+	<a href="Admin/Edit?id=5">редактировать</a>
+	<form action="Admin/Destroy?id=5" method="POST">
+		<input type="submit" value="удалить" >
+	</form>
+</div>
+<div class="edit_list">
+	<div class="edit_list_a"><a href="article/One?id=6">sdv</a></div>
+	<a href="Admin/Edit?id=6">редактировать</a>
+	<form action="Admin/Destroy?id=6" method="POST">
+		<input type="submit" value="удалить" >
+	</form>
+</div>
+
+</div>		
+</body>
+<script type="text/javascript" src="js/main.js"></script>
+</html>
