@@ -4,12 +4,14 @@ namespace App\controllers;
 use App\Models\Article;
 use App\Models\User;
 
-class AdminController
+class AdminController extends MainController
 {
 
-	protected $view;
+	public $view;
 
-	public function __construct($services){
+	public function __construct($services, $ctrl, $act){
+
+		parent::__construct($services, $ctrl, $act);
 		 	$this->view = $services['View'];
 		 	$this->validator = $services['Validator'];
 		}
@@ -28,9 +30,7 @@ class AdminController
 
 		}
 		
-		$cont = $this->view->render('v_login.php');
-		$this->view->cont = $cont;
-		$cont = $this->view->display('v_base.php');
+		$this->finelDispaly();
 
 	}
 
@@ -41,12 +41,9 @@ class AdminController
 			header('Location: http://myblog/Admin/login');
 				exit();
 		}
-
 		$items = Article::getAll();
 		$this->view->items = $items;
-		$cont = $this->view->render('v_admin_home.php');
-		$this->view->cont = $cont;
-		$cont = $this->view->display('v_base.php');
+		$this->finelDispaly();
 	}
 
 	public function actionAdd()
@@ -75,9 +72,7 @@ class AdminController
 	}
 	
 		$this->view->msg = $msg;
-		$cont = $this->view->render('v_add.php');
-		$this->view->cont = $cont;	
-		$cont = $this->view->display('v_base.php');
+		$this->finelDispaly();
 
 	}
 
@@ -113,9 +108,8 @@ class AdminController
 		$article =  Article::getOne($id);			
 		$this->view->msg = $msg;
 		$this->view->article = $article;
-		$cont = $this->view->render('v_add.php');
-		$this->view->cont = $cont;	
-		$cont = $this->view->display('v_base.php');
+		$this->act = 'add';// так как форма одна и для добавления и для редакции и называеться шаблон add.php
+		$this->finelDispaly();
 
 	}
 

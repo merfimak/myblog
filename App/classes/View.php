@@ -20,7 +20,6 @@ class View implements ViewInterface
 				$$key = $value;
 			}
 		}
-
 		ob_start();	
 		include __DIR__ .'/../../view/'. $template;
 		$content = ob_get_contents();

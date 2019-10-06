@@ -11,8 +11,9 @@
 	<div class="four"><h1>My blog</h1></div>
 
 	<ul class="menu-main">
-			<li><a href="/article/All">Blog</a></li>
-			<li><a href="/admin">Admin</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="/article/all">Blog</a></li>
+			<li><a href="/admin">Admin</a></li>			
 	</ul>
 
 		<?php echo $cont; ?>
