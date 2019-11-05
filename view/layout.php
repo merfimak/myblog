@@ -14,6 +14,7 @@
 			<li><a href="/">Home</a></li>
 			<li><a href="/article/all">Blog</a></li>
 			<li><a href="/admin">Admin</a></li>			
+			<li><a href="/feedback">feedback</a></li>			
 	</ul>
 
 		<?php echo $cont; ?>
