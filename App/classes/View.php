@@ -15,6 +15,7 @@ class View implements ViewInterface
 
 	public function render($template)
 	{
+		//echo $template;
 		if(!empty( $this->data)) {
 			foreach ($this->data as $key => $value) {
 				$$key = $value;

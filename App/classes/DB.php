@@ -13,9 +13,10 @@ class DB
 	{
 
 		try {
-			$this->dbh = new PDO('mysql:dbname=myblog;host=localhost', 'root', '');
+			$this->dbh = new PDO('mysql:dbname=myblog;host=localhost', 'root', '');//для локального сервера
+			//$this->dbh = new PDO("mysql:dbname=cyberjes_myblog;host=localhost", "cyberjes_admin", "Kw2BhqKhB6svjve"); для cyber1jesus.tk
 		}catch (\PDOException $e) {
-			$text = 'неудалось подключиться к БД';
+			$text = 'неудалось подключиться к БД' . $e->getMessage();
 			echo $text;
 			die();
 		}

@@ -28,6 +28,8 @@ class FeedbackController extends MainController
 
 		if($name != '' && $text != '' && preg_match("/^[-0-9a-z_\.]+@[-0-9a-z^\.]+\.[a-z]{2,4}$/i",$email)){
 
+			/*
+				для локального через SMTP
 			$mail->SMTPDebug = 0;
 		    $mail->isSMTP();
 			$mail->CharSet="UTF-8";
@@ -36,10 +38,11 @@ class FeedbackController extends MainController
 			$mail->Port = 587;
 			$mail->Username = 'merfimak3@gmail.com';
 			$mail->Password = 'merfimak3i';
-			$mail->SMTPAuth = true;
-
+			$mail->SMTPAuth = true;*/
+			$mail->CharSet = "UTF-8";
+			
 			$mail->setFrom('merfimak3@gmail.com');
-			$mail->addAddress('fernankadrus@gmail.com');
+			$mail->addAddress('test@cyber1jesus.tk');
 
 			$mail->isHTML(true); 
 			$mail->Subject = 'заголовок'; // Заголовок письма
@@ -48,7 +51,7 @@ class FeedbackController extends MainController
 			if (!$mail->send()) {
 			    echo 'Mailer Error: '. $mail->ErrorInfo;
 			} else {
-			   $msg = 'письмо отправлено';
+			   $msg = 'письмо отправлено' . $message;
 			   
 			}
 

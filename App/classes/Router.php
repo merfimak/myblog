@@ -8,23 +8,27 @@ class Router
 		$route = explode('/', $path);
 
 
-	$ctrl = !empty($route[1]) ? $route[1] : 'Article';
-	$act =  !empty($route[2]) ? $route[2] : 'Home';
+	$ctrl = !empty($route[1]) ? $route[1] : 'article';
+	$act =  !empty($route[2]) ? $route[2] : 'home';
 
-	$controllerClassName = '\App\controllers\\' .  $ctrl . 'Controller'; 
+	//echo $controllerClassName = '\App\controllers\\' .  ucfirst($ctrl) . 'Controller'; 
+	$controllerClassName = '\App\controllers\\' .  ucfirst($ctrl) . 'Controller'; // ucfirst($ctrl) так как контроллеры написаны с большой буквы и на линуксовом сервере не работают
 
 	if(class_exists($controllerClassName)){
 		$controller = new $controllerClassName($services, $ctrl, $act);
 		
 	}else{
-		echo "Контроллер $controllerClassName ненайден";
+		header('Location: /');
+		//echo "Контроллер $controllerClassName ненайден";
 		die;
 	}
-	$method = 'action' . $act;
+	$method = 'action' . ucfirst($act);// ucfirst($act) так как контроллеры написаны с большой буквы и на линуксовом сервере не работают
 	if(method_exists($controller, $method)){
 	$controller->$method();
 	}else{
-	echo "action $method ненайден";
+		header('Location: /');
+	//echo "action $method ненайден";
+		die;
 	}
 		}
 }

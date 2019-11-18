@@ -24,7 +24,7 @@ class AdminController extends MainController
 			$pass = $_POST['password'];
 				if($this->check($login,$pass)){
 					$_SESSION['accept'] = 'accept';
-					header('Location: http://myblog/admin');
+					header('Location: /admin');
 								exit();
 				}
 
@@ -38,7 +38,7 @@ class AdminController extends MainController
 	{
 
 		if(!$this->is_auth()){
-			header('Location: http://myblog/Admin/login');
+			header('Location: /admin/login');
 				exit();
 		}
 		$items = Article::getAll();
@@ -50,7 +50,7 @@ class AdminController extends MainController
 	{
 
 	if(!$this->is_auth()){
-			header('Location: http://myblog/Admin/login');
+			header('Location: admin/login');
 				exit();
 		}
 
@@ -80,7 +80,7 @@ class AdminController extends MainController
 	{
 
 		if(!$this->is_auth()){
-			header('Location: http://myblog/Admin/login');
+			header('Location: /admin/login');
 				exit();
 		}
 
@@ -118,7 +118,7 @@ class AdminController extends MainController
 		$id = $_GET['id'];
 		$article = new Article;
 		$article->delete($id);
-		header('Location: http://myblog/Admin');
+		header('Location: /admin/home');
 		exit;
 	}
 
